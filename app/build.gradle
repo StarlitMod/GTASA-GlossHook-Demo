@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android' version '1.8.21'
+    id 'com.github.johnrengelman.shadow' version '8.1.0'
+}
+
+android {
+    namespace 'com.rockstargames.gtasa'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.rockstargames.gtasa"
+        minSdk 21
+        //noinspection ExpiredTargetSdkVersion
+        targetSdk 28
+        versionCode 1
+        versionName "2.10"
+
+        multiDexEnabled false
+
+        ndk {
+            // 如果你需要测试32位，请注释掉 arm64-v8a 一行，否则会崩溃
+            // if you want arm32 only, please comment arm64-v8a line, or you will get crash
+            abiFilters.add("armeabi-v7a")
+//            abiFilters.add("arm64-v8a")
+        }
+
+        multiDexEnabled true
+
+        // add compile time to BuildConfig
+        buildConfigField "String", "BUILD_TIME", "\"${new Date().format("yyyy-MM-dd HH:mm:ss")}\""
+    }
+
+    ndkVersion  "28.0.13004108" // ndk version
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version "3.22.1" // cmake version
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig true
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':dyso') // dynamic so loading library
+
+
+    // Material Design
+    implementation 'com.google.android.material:material:1.10.0'
+    // support v4 for GTA:SA
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.activity:activity:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+}
