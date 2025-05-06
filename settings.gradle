@@ -23,5 +23,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "GTASA_GlossHook_Demo"
-include(':app')
-include ':dyso'
+include ':app'

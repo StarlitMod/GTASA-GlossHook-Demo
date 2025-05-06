@@ -31,8 +31,16 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
 
-        <activity android:name=".ui.MainActivity"
-            android:exported="true">
+        <activity
+            android:name=".GTASA"
+            android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"
+            android:exported="true"
+            android:label="GTA: SA"
+            android:launchMode="singleTask"
+            android:resizeableActivity="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppThemeGTASA"
+            android:windowSoftInputMode="adjustPan">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,18 +52,6 @@
 
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
-        </activity>
-
-        <activity
-            android:name=".GTASA"
-            android:configChanges="screenSize|uiMode|orientation|keyboardHidden|keyboard"
-            android:exported="true"
-            android:label="GTA: SA"
-            android:launchMode="singleTask"
-            android:resizeableActivity="false"
-            android:screenOrientation="landscape"
-            android:theme="@style/AppThemeGTASA"
-            android:windowSoftInputMode="adjustPan">
 
         </activity>
 

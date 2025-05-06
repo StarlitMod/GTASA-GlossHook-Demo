@@ -19,13 +19,10 @@ android {
         multiDexEnabled false
 
         ndk {
-            // 如果你需要测试32位，请注释掉 arm64-v8a 一行，否则会崩溃
-            // if you want arm32 only, please comment arm64-v8a line, or you will get crash
-            abiFilters.add("armeabi-v7a")
-//            abiFilters.add("arm64-v8a")
+            // if you want arm32 only, please comment arm64-v8a line
+//            abiFilters.add("armeabi-v7a")
+            abiFilters.add("arm64-v8a")
         }
-
-        multiDexEnabled true
 
         // add compile time to BuildConfig
         buildConfigField "String", "BUILD_TIME", "\"${new Date().format("yyyy-MM-dd HH:mm:ss")}\""
@@ -51,12 +48,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 
     buildFeatures {
@@ -68,8 +65,6 @@ android {
 dependencies {
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation project(':dyso') // dynamic so loading library
-
 
     // Material Design
     implementation 'com.google.android.material:material:1.10.0'
