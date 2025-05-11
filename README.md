@@ -2,6 +2,8 @@
 
 > GlossHook usage demo (hook and patch examples not included yet)
 
+use: https://github.com/XMDS/GlossHook.git
+
 This is a Gradle-based project for compiling both the GTA:SA APK and JNI components directly within Android Studio. A clean CMake environment has been set up, and GlossHook is already integrated.
 
 Supports both v2.00 and v2.10 of GTA:SA, you can change the librarys in `jniLibs` folder
